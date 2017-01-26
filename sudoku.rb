@@ -50,7 +50,8 @@ class SudokuGame
     Integer(string)
   end
 
-  def process_parameters
+  def get_input
+    board.render
     pos_to_val(retrieve_pos_from_ui, retrieve_value_from_ui)
   end
 
@@ -58,12 +59,12 @@ class SudokuGame
     board[p] = v
   end
 
-  def commence_proceedings
-    process_parameters until board_process_terminates?
+  def run
+    get_input until game_over?
     puts "Congratulations, you win!"
   end
 
-  def board_process_terminates?
+  def game_over?
     board.terminate?
   end
 
@@ -84,4 +85,4 @@ end
 
 
 game = SudokuGame.from_file("puzzles/sudoku1.txt")
-game.commence_proceedings
+game.run
